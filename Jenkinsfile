@@ -13,7 +13,10 @@ pipeline {
 		stage ('Docker build'){
 			steps {
 				script {
+					docker.withRegistry('', 'dockerhub') {
 						def Myflaskapp = docker.build("alexandrkorol/flaskapp:v3")
+						Myflaskapp.push()
+					}
 				}
 			}
 		}
