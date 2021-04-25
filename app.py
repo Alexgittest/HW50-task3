@@ -10,7 +10,7 @@ app=Flask(__name__)
 @app.route('/',methods=['GET', 'POST'])
 def index():
     s3 = boto3.resource('s3',verify=False)
-    obj = s3.Object('alex-flask-app-bucket', 'birthday.txt')
+    obj = s3.Object('alex-flask-app-bucket', 'birthdays.txt')
     data=obj.get()['Body'].read().decode('utf-8')
     people_dict=json.loads(data)
     if request.method == 'POST':
@@ -27,7 +27,7 @@ def index():
 @app.route('/<username>')
 def show_user_birthday(username):
     s3 = boto3.resource('s3',verify=False)
-    obj = s3.Object('alex-flask-app-bucket', 'birthday.txt')
+    obj = s3.Object('alex-flask-app-bucket', 'birthdays.txt')
     data=obj.get()['Body'].read().decode('utf-8')
     people_dict=json.loads(data)
     birthday="Совпадений не найдено"   
