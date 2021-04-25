@@ -13,7 +13,7 @@ pipeline {
 		stage ('Docker build'){
 			steps {
 				script {
-						def Myflaskapp = docker.build("alexandrkorol/flaskapp:v2")
+						def Myflaskapp = docker.build("alexandrkorol/flaskapp:v3")
 				}
 			}
 		}
